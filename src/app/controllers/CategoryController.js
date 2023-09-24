@@ -71,7 +71,7 @@ class CategoryController {
       if (!category) {
         return response
           .status(401)
-          .json({ error: "Make sure your id is correct" });
+          .json({ error: "Make sure your categoery id is correct" });
       }
 
       let path;

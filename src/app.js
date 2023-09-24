@@ -9,7 +9,7 @@ import "./database";
 class App {
   constructor() {
     this.app = express();
-    this.app.use(cors())
+    this.app.use(cors());
 
     this.middelewares();
     this.routes();

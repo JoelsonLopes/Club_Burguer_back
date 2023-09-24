@@ -13,25 +13,27 @@ class SessionController {
     const userEmailOrPasswordIncorrect = () => {
       return response
         .status(401)
-        .json({ error: "Make sure your password or email are correct" });
+        .json({ error: "Seu email ou senha estão incorretos" });
     };
 
-    if (!(await schema.isValid(request.body))) userEmailOrPasswordIncorrect();
-
+    if (!(await schema.isValid(request.body))) 
+    return userEmailOrPasswordIncorrect();
+    
     const { email, password } = request.body;
     const user = await User.findOne({
       where: { email },
     });
-    if (!user) userEmailOrPasswordIncorrect();
 
-    if (!(await user.checkPassword(password))) userEmailOrPasswordIncorrect();
+    if (!user) return userEmailOrPasswordIncorrect();
+
+    if (!(await user.checkPassword(password)))  return userEmailOrPasswordIncorrect();
 
     return response.json({
       id: user.id,
       email,
       name: user.name,
       admin: user.admin,
-      token: jwt.sign({ id: user.id, name: user.name  }, authConfig.secret, {
+      token: jwt.sign({ id:user.id, name:user.name  }, authConfig.secret, {
         expiresIn: authConfig.expiresIn,
       }),
     });
