@@ -2,7 +2,7 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("categories", {
+    await queryInterface.createTable("Categories", {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -14,17 +14,17 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
-      created_at: {
+      createdAt: {
         type: Sequelize.DATE,
         allowNull: false,
       },
-      updated_at: {
+      updatedAt: {
         type: Sequelize.DATE,
         allowNull: false,
       },
     });
 
-    await queryInterface.addConstraint("categories", {
+    await queryInterface.addConstraint("Categories", {
       fields: ["id"],
       type: "unique",
       name: "unique_category_id",
@@ -32,7 +32,7 @@ module.exports = {
   },
 
   down: async (queryInterface) => {
-    await queryInterface.removeConstraint("categories", "unique_category_id");
-    await queryInterface.dropTable("categories");
+    await queryInterface.removeConstraint("Categories", "unique_category_id");
+    await queryInterface.dropTable("Categories");
   },
 };
