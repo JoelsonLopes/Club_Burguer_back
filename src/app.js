@@ -8,7 +8,7 @@ import "./database";
 
 const corsOptions = {
   origin: 'https://burger-interface-l5ry.vercel.app',
-  credential: true
+  credentials: true
 }
 
 class App {
