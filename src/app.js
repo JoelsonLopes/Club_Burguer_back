@@ -6,10 +6,15 @@ import cors from "cors"
 
 import "./database";
 
+const corsOptions = {
+  origin: 'https://burger-interface-l5ry.vercel.app',
+  credential: true
+}
+
 class App {
   constructor() {
     this.app = express();
-    this.app.use(cors());
+    this.app.use(cors(corsOptions));
 
     this.middelewares();
     this.routes();
