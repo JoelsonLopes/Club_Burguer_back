@@ -11,7 +11,7 @@ class Product extends Model {
         url: {
           type: Sequelize.VIRTUAL,
           get() {
-            return `http://localhost:3001/product-file/${this.path}`;
+            return `https://clubburguerback-production.up.railway.app/product-file/${this.path}`;
           },
         },
       },
@@ -25,7 +25,7 @@ class Product extends Model {
   static associate(models) {
     this.belongsTo(models.Category, {
       foreignKey: "category_id",
-      as: "category",
+      as: "Category",
     });
   }
 }
