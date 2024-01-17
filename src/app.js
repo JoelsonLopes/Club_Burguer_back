@@ -2,23 +2,24 @@ import express from "express";
 import routes from "./routes";
 import { resolve } from "path";
 import cors from "cors";
-
 import "./database";
 
 const corsOptions = {
   origin: 'https://burger-interface-l5ry.vercel.app',
   credentials: true,
-};
+}
 
 class App {
   constructor() {
     this.app = express();
-    this.app.use(cors(corsOptions));
-
-    console.log('Configuração CORS:', corsOptions);
-
+    this.setupCORS();
     this.setupMiddlewares();
     this.setupRoutes();
+  }
+
+  setupCORS() {
+    this.app.use(cors(corsOptions));
+    console.log('Configuração CORS:', corsOptions);
   }
 
   setupMiddlewares() {
