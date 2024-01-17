@@ -1,28 +1,27 @@
 import express from "express";
 import routes from "./routes";
 import { resolve } from "path";
-import cors from "cors"
-
+import cors from "cors";
 
 import "./database";
 
 const corsOptions = {
   origin: 'https://burger-interface-l5ry.vercel.app',
   credentials: true,
-}
+};
 
 class App {
   constructor() {
     this.app = express();
     this.app.use(cors(corsOptions));
 
-    console.log('Configuração CORS:', corsOptions)
+    console.log('Configuração CORS:', corsOptions);
 
-    this.middelewares();
-    this.routes();
+    this.setupMiddlewares();
+    this.setupRoutes();
   }
 
-  middelewares() {
+  setupMiddlewares() {
     this.app.use(express.json());
     this.app.use(
       "/product-file",
@@ -34,7 +33,7 @@ class App {
     );
   }
 
-  routes() {
+  setupRoutes() {
     this.app.use(routes);
   }
 }
